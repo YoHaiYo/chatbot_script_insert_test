@@ -6,5 +6,10 @@ window.onload = function () {
   iframe.style.height = "100%";
   iframe.style.border = "none";
 
-  document.body.appendChild(iframe);
+  var targetElement = document.getElementById("d3_company_name");
+  if (targetElement) {
+    targetElement.appendChild(iframe);
+  } else {
+    console.error("Element with id 'd3_company_name' not found.");
+  }
 };
