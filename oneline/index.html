@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="d3_company_name" style="height: 100%"></div>
+    <script src="https://chatbot-script-insert-test.vercel.app/js/insertchatbot.js"></script> -->
+    <script>
+      window.onload = function () {
+        // 이미지 버튼 생성
+        var imgButton = document.createElement("img");
+        imgButton.id = "chatbot-toggle-btn";
+        imgButton.src =
+          "https://koreatimes.xerostai.com/static/front/images/png/floating-btn-chat.png";
+        imgButton.alt = "챗봇 버튼";
+        imgButton.style.position = "fixed";
+        imgButton.style.bottom = "10px";
+        imgButton.style.right = "10px";
+        imgButton.style.zIndex = "1000";
+        imgButton.style.width = "60px"; // 원하는 크기로 조정 가능
+        imgButton.style.height = "60px";
+        imgButton.style.cursor = "pointer"; // 클릭 가능하게 마우스 커서 변경
+        document.body.appendChild(imgButton); // 이미지 버튼을 body에 추가
+
+        // iframe 생성 및 숨기기
+        var iframe = document.createElement("iframe");
+        iframe.id = "chatbot-iframe";
+        iframe.src =
+          "https://chat.xerostai.com/chatbot_v1/?category=koreaTimes";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.style.position = "fixed";
+        iframe.style.bottom = "0";
+        iframe.style.right = "0";
+        iframe.style.display = "none"; // 처음에는 숨겨져 있음
+        iframe.style.zIndex = "999"; // 이미지 버튼보다 아래에 표시되도록 z-index 설정
+        document.body.appendChild(iframe); // iframe을 body에 추가
+
+        // 이미지 클릭 이벤트 설정
+        var isIframeVisible = false;
+
+        imgButton.onclick = function () {
+          if (isIframeVisible) {
+            iframe.style.display = "none"; // iframe 숨기기
+          } else {
+            iframe.style.display = "block"; // iframe 보이기
+          }
+          isIframeVisible = !isIframeVisible; // 상태 변경
+        };
+      };
+    </script>
+  </body>
+</html>
