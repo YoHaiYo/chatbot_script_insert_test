@@ -11,52 +11,64 @@
     </style>
   </head>
   <body>
-    <!-- <div id="d3_company_name" style="height: 100%"></div>
-    <script src="https://chatbot-script-insert-test.vercel.app/js/insertchatbot.js"></script> -->
     <script>
-      window.onload = function () {
-        // 이미지 버튼 생성
-        var imgButton = document.createElement("img");
-        imgButton.id = "chatbot-toggle-btn";
-        imgButton.src =
-          "https://koreatimes.xerostai.com/static/front/images/png/floating-btn-chat.png";
-        imgButton.alt = "챗봇 버튼";
-        imgButton.style.position = "fixed";
-        imgButton.style.bottom = "10px";
-        imgButton.style.right = "10px";
-        imgButton.style.zIndex = "1000";
-        imgButton.style.width = "60px"; // 원하는 크기로 조정 가능
-        imgButton.style.height = "60px";
-        imgButton.style.cursor = "pointer"; // 클릭 가능하게 마우스 커서 변경
-        document.body.appendChild(imgButton); // 이미지 버튼을 body에 추가
-
-        // iframe 생성 및 숨기기
+      (function () {
+        var chatbotButton = document.createElement("div");
+        chatbotButton.style.position = "fixed";
+        chatbotButton.style.bottom = "20px";
+        chatbotButton.style.right = "20px";
+        chatbotButton.style.width = "60px";
+        chatbotButton.style.height = "60px";
+        chatbotButton.style.backgroundImage =
+          'url("https://koreatimes.xerostai.com/static/front/images/png/floating-btn-chat.png")';
+        chatbotButton.style.backgroundSize = "cover";
+        chatbotButton.style.cursor = "pointer";
+        chatbotButton.style.zIndex = "1000";
+        document.body.appendChild(chatbotButton);
+        var chatbotContainer = document.createElement("div");
+        chatbotContainer.style.position = "fixed";
+        chatbotContainer.style.bottom = "100px";
+        chatbotContainer.style.right = "20px";
+        chatbotContainer.style.width = "400px";
+        chatbotContainer.style.height = "600px";
+        chatbotContainer.style.border = "1px solid #ccc";
+        chatbotContainer.style.zIndex = "1000";
+        chatbotContainer.style.display = "none";
+        chatbotContainer.style.backgroundColor = "#fff";
+        var closeButton = document.createElement("div");
+        closeButton.style.backgroundColor = "#ff6347";
+        closeButton.style.position = "absolute";
+        closeButton.style.top = "15px";
+        closeButton.style.right = "15px";
+        closeButton.style.width = "80px";
+        closeButton.style.height = "31px";
+        closeButton.style.cursor = "pointer";
+        closeButton.style.color = "white";
+        closeButton.style.display = "flex";
+        closeButton.style.justifyContent = "center";
+        closeButton.style.alignItems = "center";
+        closeButton.style.borderRadius = "10px";
+        closeButton.style.fontSize = "14px";
+        closeButton.style.fontWeight = "bold";
+        closeButton.innerText = "종료하기";
+        chatbotContainer.appendChild(closeButton);
         var iframe = document.createElement("iframe");
-        iframe.id = "chatbot-iframe";
         iframe.src =
-          "https://chat.xerostai.com/chatbot_v1/?category=koreaTimes";
+          "https://d3.xerostai.com/company/%EC%97%94%EB%94%94%EA%B3%A0/";
         iframe.style.width = "100%";
         iframe.style.height = "100%";
         iframe.style.border = "none";
-        iframe.style.position = "fixed";
-        iframe.style.bottom = "0";
-        iframe.style.right = "0";
-        iframe.style.display = "none"; // 처음에는 숨겨져 있음
-        iframe.style.zIndex = "999"; // 이미지 버튼보다 아래에 표시되도록 z-index 설정
-        document.body.appendChild(iframe); // iframe을 body에 추가
-
-        // 이미지 클릭 이벤트 설정
-        var isIframeVisible = false;
-
-        imgButton.onclick = function () {
-          if (isIframeVisible) {
-            iframe.style.display = "none"; // iframe 숨기기
-          } else {
-            iframe.style.display = "block"; // iframe 보이기
-          }
-          isIframeVisible = !isIframeVisible; // 상태 변경
-        };
-      };
+        chatbotContainer.appendChild(iframe);
+        document.body.appendChild(chatbotContainer);
+        chatbotButton.addEventListener("click", function () {
+          chatbotContainer.style.display =
+            chatbotContainer.style.display === "none" ? "block" : "none";
+        });
+        closeButton.addEventListener("click", function () {
+          chatbotContainer.style.display = "none";
+          iframe.src = iframe.src;
+        });
+      })();
     </script>
   </body>
 </html>
