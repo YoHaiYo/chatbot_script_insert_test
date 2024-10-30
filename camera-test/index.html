@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capture Photo</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <h1>[우리편] 안전관리 AI 웹서비스_사진 촬영 테스트</h1>
+
+    <!-- 카메라 시작 및 캡처 버튼 -->
+    <button onclick="startCamera()">카메라 시작</button>
+    <button id="captureBtn" style="display: none">사진 촬영</button>
+
+    <!-- 비디오 스트림 및 캡처한 사진을 위한 태그 -->
+    <video id="camera" autoplay playsinline style="display: none"></video>
+    <canvas id="snapshot" style="display: none"></canvas>
+    <img id="photo" alt="Captured Photo" />
+
+    <!-- JavaScript 코드 -->
+    <script>
+      async function startCamera() {
+        const video = document.getElementById("camera");
+        const captureBtn = document.getElementById("captureBtn");
+
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          video.srcObject = stream;
+          video.style.display = "block";
+          captureBtn.style.display = "inline-block";
+        } catch (err) {
+          console.error("카메라 접근 실패:", err);
+        }
+      }
+
+      document.getElementById("captureBtn").addEventListener("click", () => {
+        const video = document.getElementById("camera");
+        const canvas = document.getElementById("snapshot");
+        const photo = document.getElementById("photo");
+
+        // 비디오를 캔버스에 그리기
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0);
+
+        // 캔버스를 이미지로 변환
+        photo.src = canvas.toDataURL("image/png");
+        photo.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
