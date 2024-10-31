@@ -13,6 +13,9 @@
     <button onclick="startCamera()">카메라 시작</button>
     <button id="captureBtn" style="display: none">사진 촬영</button>
 
+    <!-- 파일 선택 버튼 (모바일 갤러리에서 선택 가능) -->
+    <input type="file" id="fileInput" accept="image/*" style="display: none" />
+
     <!-- 비디오 스트림 및 캡처한 사진을 위한 태그 -->
     <video id="camera" autoplay playsinline style="display: none"></video>
     <canvas id="snapshot" style="display: none"></canvas>
@@ -23,6 +26,7 @@
       async function startCamera() {
         const video = document.getElementById("camera");
         const captureBtn = document.getElementById("captureBtn");
+        const fileInput = document.getElementById("fileInput");
 
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
@@ -31,6 +35,7 @@
           video.srcObject = stream;
           video.style.display = "block";
           captureBtn.style.display = "inline-block";
+          fileInput.style.display = "inline-block"; // 파일 선택 버튼 표시
         } catch (err) {
           console.error("카메라 접근 실패:", err);
         }
@@ -50,6 +55,23 @@
         photo.src = canvas.toDataURL("image/png");
         photo.style.display = "block";
       });
+
+      // 파일 선택 시 이미지 미리보기
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", (event) => {
+          const file = event.target.files[0];
+          const photo = document.getElementById("photo");
+
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              photo.src = e.target.result;
+              photo.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+          }
+        });
     </script>
   </body>
 </html>
