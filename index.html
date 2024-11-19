@@ -24,5 +24,23 @@
     <h3>추가테스트</h3>
     <p><a href="/camera-test/index.html">카메라 테스트</a></p>
     <p><a href="/ocr-test/index.html">OCR 테스트</a></p>
+
+    <script>
+      (function () {
+        var chatbotButton = document.createElement("div");
+        chatbotButton.style.width = "100%";
+        chatbotButton.style.height = "100%";
+        var iframe = document.createElement("iframe");
+        iframe.src = "https://namdosobanchatbot.com/company/남도소반/";
+        iframe.style.position = "fixed";
+        iframe.style.border = "none";
+        iframe.style.bottom = "20px";
+        iframe.style.left = "20px";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        chatbotButton.appendChild(iframe);
+        document.body.appendChild(chatbotButton);
+      })();
+    </script>
   </body>
 </html>
