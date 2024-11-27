@@ -29,7 +29,7 @@
       (function () {
         const styleSheet = document.createElement("style");
         styleSheet.innerHTML =
-          " iframe#chatbot-wrapper { z-index: 9999; position: fixed; left: 20px; bottom: 20px; width: 300px; height: 300px; border: none; transition: all 0.3s ease; } iframe#chatbot-wrapper.expanded { width: 750px; height: 420px; } @media (max-width: 767px) { iframe#chatbot-wrapper.expanded { width: 90vw; height: 420px } } ";
+          " iframe#chatbot-wrapper { z-index: 9999; position: fixed; left: 20px; bottom: 20px; width: 300px; height: 300px; border: none; } iframe#chatbot-wrapper.expanded { width: 725px; height: 420px; } @media (max-width: 767px) { iframe#chatbot-wrapper.expanded { width: 90vw; height: 420px } } ";
         document.head.appendChild(styleSheet);
         const iframe = document.createElement("iframe");
         iframe.id = "chatbot-wrapper";
