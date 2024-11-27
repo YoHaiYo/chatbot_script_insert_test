@@ -30,40 +30,31 @@
         // 스타일 시트 생성 및 추가
         const styleSheet = document.createElement("style");
         styleSheet.innerHTML = `
-        #chatbot-wrapper {
-          z-index: 9999;
-          position: fixed;
-          left: 20px;
-          bottom: 20px;
-          width: 300px;
-          height: 300px;
-          border: none;
-          transition: all 0.3s ease;
-        }
-        #chatbot-wrapper.expanded {
-          width: 750px;
-          height: 420px;
-        }
-        iframe {
-          width: 100%;
-          height: 100%;
-          border: none;
-        }
-      `;
+          iframe#chatbot-wrapper { 
+            z-index: 9999;
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: 300px;
+            height: 300px;
+            border: none;
+            transition: all 0.3s ease;
+          }
+          iframe#chatbot-wrapper.expanded {
+            width: 750px;
+            height: 420px;
+          }
+        `;
         document.head.appendChild(styleSheet);
-
-        // 챗봇 wrapper 생성 및 추가
-        const chatbotWrapper = document.createElement("div");
-        chatbotWrapper.id = "chatbot-wrapper";
 
         // iframe 생성 및 추가
         const iframe = document.createElement("iframe");
+        iframe.id = "chatbot-wrapper"; // iframe에 ID 추가
         iframe.src = "https://namdosobanchatbot.com/company/남도소반/";
         iframe.allow = "microphone";
-        chatbotWrapper.appendChild(iframe);
 
-        // 챗봇 wrapper를 body에 추가
-        document.body.appendChild(chatbotWrapper);
+        // iframe을 body에 추가
+        document.body.appendChild(iframe);
 
         // 메시지 수신 핸들러
         window.addEventListener("message", (event) => {
@@ -74,9 +65,9 @@
 
           // iframe 내부에서 보내는 이벤트 처리
           if (data === "expand-chatbot") {
-            chatbotWrapper.classList.add("expanded"); // 크기 확장
+            iframe.classList.add("expanded"); // 크기 확장
           } else if (data === "collapse-chatbot") {
-            chatbotWrapper.classList.remove("expanded"); // 크기 축소
+            iframe.classList.remove("expanded"); // 크기 축소
           }
         });
       })();
