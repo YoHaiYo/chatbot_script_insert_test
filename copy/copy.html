@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clipboard Copy Example</title>
+    <script>
+      // 복사 함수
+      function copyToClipboard(text) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            alert("Copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+            alert("Failed to copy text. Please try again.");
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Clipboard Copy Example</h1>
+    <p>Click the button below to copy the text:</p>
+    <!-- 복사할 텍스트 -->
+    <div>
+      <span id="copyText">This is the text to copy!</span>
+    </div>
+    <!-- 복사 버튼 -->
+    <button
+      onclick="copyToClipboard(document.getElementById('copyText').innerText)"
+    >
+      Copy Text
+    </button>
+  </body>
+</html>
