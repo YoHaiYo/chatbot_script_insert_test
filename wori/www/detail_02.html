@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta name="code" charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script src="STATIC/js/common.js"></script>
+	<script src="STATIC/js/modal.js"></script>
+	<link rel="stylesheet" type="text/css" href="STATIC/css/style.css"/>
+</head>
+<body>
+	<div class="vh-container">
+		<div class="vh-header-wrap">
+			<header id="header">
+				<div class="header-tools">
+					<button class="icon-button" title="촬영">
+						<i class="icon icon-folder"></i>
+					</button>
+				</div>
+				<div class="logo"><img src="STATIC/img/logo/logo_red.svg"></div>
+				<button type="button" class="btn btn_rd btn_white" id="logoutBtn">로그아웃</a>
+			</header>
+		</div>
+		<!-- content -->
+		<div class="vh-content-wrap">
+			<div class="safety-detail-wrap">
+				<div class="safety-detail">
+					<div class="safety-title">
+						<i class="icon icon-cap-primary"></i>
+						<h1>안전모 미착용</h1>
+					</div>
+
+					<h2>관련 판례</h2>
+					<pre>
+						“피고인은 피해자에게 안전대와 안전모를 모두 지급하고, A씨를 통하여 안전사항을 지시하였으므로 안전조치를 다 행한 것이라는 취지의 주장을 한다.
+
+						그러나 사업주는 안전모와 안전대를 필요로 하는 작업에 있어 단순히 그 장비를 지급함으로서 안전조치를 다 하는 것이 아니라 
+						그것을 제대로 착용 및 사용하도록 하여야 할 
+						관리,감독의무까지 있다 할 것. 
+						(서울지방법원 2012.4.4 산고 2011고단 1935판결)
+					</pre>
+				</div>
+				<div class="btn_area">
+					<a href="" class="btn btn_black">돌아가기</a>
+				</div>
+			</div>
+		</div>
+		<!-- content // -->
+
+	</div>
+
+	<div class="modal-dialog">
+    	<div class="dim"></div>
+	    <div class="modal-content" id="modal-logout" style="display: none;">
+	    	<div class="modal-alert">
+	    		<div class="modal-body">
+	    			<div class="modal-alert-message">
+	    				로그아웃 하시겠습니까?
+	    			</div>
+	    		</div>
+	    		<div class="modal-btn-area">
+	    			<button type="button" class="btn btn_white cancel">취소</button>
+	    			<button type="button" class="btn btn_black submit">확인</button>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+	<script type="text/javascript">
+		_showModal('#logoutBtn', '#modal-logout', function(){
+			// callback();
+		});
+	</script>
+</body>
+</html>

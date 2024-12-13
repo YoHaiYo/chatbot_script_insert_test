@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta name="code" charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script src="STATIC/js/common.js"></script>
+	<script src="STATIC/js/modal.js"></script>
+	<link rel="stylesheet" type="text/css" href="STATIC/css/style.css"/>
+</head>
+<body>
+	<div class="vh-container">
+		<div class="vh-header-wrap">
+			<header id="header">
+				<div class="header-tools">
+					<button class="icon-button" title="공유" id="shareBtn">
+						<i class="icon icon-share"></i>
+					</button>
+					<button class="icon-button" title="촬영">
+						<i class="icon icon-folder"></i>
+					</button>
+				</div>
+				<div class="logo"><img src="STATIC/img/logo/logo_red.svg"></div>
+				<button type="button" class="btn btn_rd btn_white" id="logoutBtn">로그아웃</a>
+			</header>
+		</div>
+		<!-- content -->
+		<div class="vh-content-wrap">
+			<div class="camera-result-wrap">
+				<div class="camera-result-img">
+					<img src="STATIC/img/camera_dump.png">
+				</div>
+				<ul class="safety-check-list">
+					<li>
+						<a href="">
+							<i class="icon icon-cap"></i>
+							<p>안전모 미착용</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-chain"></i>
+							<p>고소작업자 안전대 착용 및 안전대 고리 체결</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-net"></i>
+							<p>낙하물 방지망 설치 기준 준수</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-fire"></i>
+							<p>용접 또는 절단 등 작업시 불꽃 비산방지도치 및 소화기 비치</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-electro"></i>
+							<p>전기 통신선 정리 여부</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-gear"></i>
+							<p>기계 설비 방호 조치</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-danger-sign"></i>
+							<p>안전보건표지 부착</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-crumple"></i>
+							<p>토사 및 구축물 붕괴 방지</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-drop"></i>
+							<p>물체 낙하 방지</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-dive"></i>
+							<p>추락 방지 조치</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-trade"></i>
+							<p>작업자 간 보행로 확보 및 위험 구역 표시</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-poison"></i>
+							<p>유해 위험 물질 취급 표시 및 보호장비</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-vest"></i>
+							<p>고소작업 시 안전대 착용</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="icon icon-exit"></i>
+							<p>비상구와 대피 경로 확인</p>
+							<i class="icon icon-info"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- content // -->
+	</div>
+
+	<div class="modal-dialog">
+    	<div class="dim"></div>
+	    <div class="modal-content" id="modal-logout" style="display: none;">
+	    	<div class="modal-alert">
+	    		<div class="modal-body">
+	    			<div class="modal-alert-message">
+	    				로그아웃 하시겠습니까?
+	    			</div>
+	    		</div>
+	    		<div class="modal-btn-area">
+	    			<button type="button" class="btn btn_white cancel">취소</button>
+	    			<button type="button" class="btn btn_black submit">확인</button>
+	    		</div>
+	    	</div>
+	    </div>
+
+	    <div class="modal-content" id="modal-share" style="display: flex;">
+	    	<div class="modal-confirm">
+	    		<div class="modal-head">
+	    			<div class="modal-head-title">공유하기</div>
+	    			<div class="modal-close closer">
+	    				<i class="icon icon-close"></i>
+	    			</div>
+	    		</div>
+	    		<div class="modal-body">
+	    			<div class="share-icon">
+	    				<i class="icon icon-kakaotalk"></i>
+	    			</div>
+	    			<div class="clipbaord-field">
+	    				<span>url</span>
+	    				<input type="" name="" value="https://uripeoynmanagedsafe.com" readonly id="urlText">
+	    			</div>
+	    		</div>
+	    		<div class="modal-btn-area">
+	    			<button type="button" class="btn btn_black submit">복사</button>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+	<script type="text/javascript">
+		_showModal('#logoutBtn', '#modal-logout', function(){
+			// callback();
+		});
+
+		let urlText = document.querySelector('#urlText').value;
+		_showModal('#shareBtn', '#modal-share', function(){
+			window.navigator.clipboard.writeText(urlText).then(() => {
+		        
+		   });
+		});
+	</script>
+</body>
+</html>

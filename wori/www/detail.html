@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta name="code" charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script src="STATIC/js/common.js"></script>
+	<script src="STATIC/js/modal.js"></script>
+	<link rel="stylesheet" type="text/css" href="STATIC/css/style.css"/>
+</head>
+<body>
+	<div class="vh-container">
+		<div class="vh-header-wrap">
+			<header id="header">
+				<div class="header-tools">
+					<button class="icon-button" title="촬영">
+						<i class="icon icon-folder"></i>
+					</button>
+				</div>
+				<div class="logo"><img src="STATIC/img/logo/logo_red.svg"></div>
+				<button type="button" class="btn btn_rd btn_white" id="logoutBtn">로그아웃</a>
+			</header>
+		</div>
+		<!-- content -->
+		<div class="vh-content-wrap">
+			<div class="safety-detail-wrap">
+				<div class="safety-detail">
+					<div class="safety-title">
+						<i class="icon icon-cap-primary"></i>
+						<h1>안전모 미착용</h1>
+					</div>
+
+					<h2>관련 법령</h2>
+					<ul>
+						<li>
+							<p><strong>사업주</strong> : 산업안전보건기준에 관한 규칙 제 32조(보호구의 지급 등)</p>
+						</li>
+						<li>
+							<p><strong>근로자</strong> : 산업안전보건기준에 관한 규칙 제 32조 2항</p>
+						</li>
+					</ul>
+
+					<h2>처벌 규정</h2>
+					<ul>
+						<li>
+							<p>안전모 미착용으로 인한 산업안전보건법 위반 시, 사업주와 근로자 모두 처벌 대상이 될 수 있습니다. </p>
+						</li>
+						<li>
+							<p>구체적인 처벌 내용은 위반 정도와 상황에 따라 다르지만, 일반적으로 과태료나 벌금 등의 행정처분이 부과될 수 있습니다.</p>
+						</li>
+					</ul>
+				</div>
+				<div class="btn_area">
+					<a href="" class="btn btn_black">돌아가기</a>
+					<a href="" class="btn btn_white">2차 상세정보 보기</a>
+				</div>
+			</div>
+		</div>
+		<!-- content // -->
+
+	</div>
+
+	<div class="modal-dialog">
+    	<div class="dim"></div>
+	    <div class="modal-content" id="modal-logout" style="display: none;">
+	    	<div class="modal-alert">
+	    		<div class="modal-body">
+	    			<div class="modal-alert-message">
+	    				로그아웃 하시겠습니까?
+	    			</div>
+	    		</div>
+	    		<div class="modal-btn-area">
+	    			<button type="button" class="btn btn_white cancel">취소</button>
+	    			<button type="button" class="btn btn_black submit">확인</button>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+	<script type="text/javascript">
+		_showModal('#logoutBtn', '#modal-logout', function(){
+			// callback();
+		});
+	</script>
+</body>
+</html>

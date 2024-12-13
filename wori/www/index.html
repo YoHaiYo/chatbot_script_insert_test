@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta name="code" charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes"/>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script src="STATIC/js/common.js"></script>
+	<script src="STATIC/js/modal.js"></script>
+	<link rel="stylesheet" type="text/css" href="STATIC/css/style.css"/>
+</head>
+<body>
+	<div class="vh-container">
+		<!-- content -->
+		<div class="vh-content-wrap">
+			<div class="login-header">
+				<button type="button" class="btn btn_rd btn_white" id="logoutBtn">로그아웃</a>
+			</div>
+			<div class="induce-container">
+				<div class="induce-visual">
+					<div class="logo">
+						<img src="STATIC/img/logo/logo.svg">
+					</div>
+					<div class="img">
+						<img src="STATIC/img/visual/person.svg">
+					</div>
+				</div>
+				<div class="btn_area">
+					<button type="button" class="btn btn_white accessBtn">
+						<i class="icon icon-camera"></i>촬영하기
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- content // -->
+	</div>
+
+	<div class="allow-access-wrap">
+		<div class="allow-access">
+			<div class="allow-access-head">
+				<div><strong>http://localhost:8000</strong>에서 다음 권한을 요청합니다.</div>
+				<button type="button" class="btn accessClose">
+					<i class="icon icon-close"></i>
+				</button>
+			</div>
+			<div class="allow-access-target">
+				<i class="icon icon-camera2"></i>
+				<span>카메라 사용</span>
+			</div>
+			<ul class="allow-access-menu">
+				<li>
+					<button type="button" class="btn btn_white">방문할 때 마다 허용</button>
+				</li>
+				<li>
+					<button type="button" class="btn btn_white">이번에만 허용</button>
+				</li>
+				<li>
+					<button type="button" class="btn btn_white">허용 안함</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="modal-dialog">
+    	<div class="dim"></div>
+	    <div class="modal-content" id="modal-logout" style="display: none;">
+	    	<div class="modal-alert">
+	    		<div class="modal-body">
+	    			<div class="modal-alert-message">
+	    				로그아웃 하시겠습니까?
+	    			</div>
+	    		</div>
+	    		<div class="modal-btn-area">
+	    			<button type="button" class="btn btn_white cancel">취소</button>
+	    			<button type="button" class="btn btn_black submit">확인</button>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+
+	<script type="text/javascript">
+		let accessBtn = document.querySelector('.accessBtn');
+		let accessClose = document.querySelector('.accessClose');
+		let accessModal = document.querySelector('.allow-access-wrap');
+		accessBtn.addEventListener('click', function(){
+           accessModal.classList.add('open');
+        });
+
+        accessClose.addEventListener('click', function(){
+            accessModal.classList.remove('open');
+        });
+
+        // 각 활성 요소 제외 클릭시 닫기
+        window.addEventListener('click', function(e) {
+           if(!e.target.closest('.allow-access') && !e.target.classList.contains('accessBtn') && !e.target.closest('accessBtn')){
+                accessModal.classList.remove('open');
+            }
+        });
+
+
+		_showModal('#logoutBtn', '#modal-logout', function(){
+			// callback();
+		});
+	</script>
+</body>
+</html>

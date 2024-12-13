@@ -1,0 +1,5 @@
+@import url("NotoSansKR/NotoSansKR.css");
+:root {
+	--font-family : 'NotoSansKR';
+}
+* { font-family: var(--font-family); }

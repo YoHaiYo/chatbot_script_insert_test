@@ -1,0 +1,35 @@
+.icon { flex-shrink: 0; display: flex; justify-content: center; align-items: center; }
+.icon:before { content: ""; display: block; background-repeat: no-repeat; background-position: center; background-size: contain; width: 1em; height: 1em; max-width: 100%; max-height: 100%; }
+.icon img { width: 1em; height: 1em; }
+.icon-14 { font-size: 14px; }
+.icon-24 { font-size: 24px; }
+
+/* arrow */
+.icon-arrow-down:before { background-image: url(../img/icon/common/arrow-down.svg); }
+
+/*tools */
+.icon-camera:before { background-image: url(../img/icon/common/icon-camera.svg); } 
+.icon-camera2:before { background-image: url(../img/icon/common/icon-camera-2.svg); } 
+.icon-close:before { background-image: url(../img/icon/common/icon-close.svg); }
+.icon-folder:before { background-image: url(../img/icon/common/icon-folder.svg); }
+.icon-image:before { background-image: url(../img/icon/common/icon-image.svg); }
+.icon-info:before { background-image: url(../img/icon/common/icon-information.svg); }
+.icon-share:before { background-image: url(../img/icon/common/icon-share.svg); }
+.symbol-kakao:before { background-image: url(../img/icon/common/symbol_kakao.svg); }
+
+.icon-kakaotalk:before { background-image: url(../img/icon/common/icon-kakaotalk.svg); }
+.icon-cap:before { background-image: url(../img/icon/common/icon-cap.svg); }
+.icon-cap-primary:before { background-image: url(../img/icon/common/icon-cap-primary.svg); }
+.icon-chain:before { background-image: url(../img/icon/common/icon-chain.svg); }
+.icon-net:before { background-image: url(../img/icon/common/icon-net.svg); }
+.icon-fire:before { background-image: url(../img/icon/common/icon-fire.svg); }
+.icon-electro:before { background-image: url(../img/icon/common/icon-electro.svg); }
+.icon-gear:before { background-image: url(../img/icon/common/icon-gear.svg); }
+.icon-danger-sign:before { background-image: url(../img/icon/common/icon-danger-sign.svg); }
+.icon-crumple:before { background-image: url(../img/icon/common/icon-crumple.svg); }
+.icon-drop:before { background-image: url(../img/icon/common/icon-drop.svg); }
+.icon-dive:before { background-image: url(../img/icon/common/icon-dive.svg); }
+.icon-trade:before { background-image: url(../img/icon/common/icon-trade.svg); }
+.icon-vest:before { background-image: url(../img/icon/common/icon-vest.svg); }
+.icon-exit:before { background-image: url(../img/icon/common/icon-exit.svg); }
+.icon-poison:before { background-image: url(../img/icon/common/icon-poison.svg); }
