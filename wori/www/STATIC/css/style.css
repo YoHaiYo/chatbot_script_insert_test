@@ -1,12 +1,10 @@
-/* fonts css */ 
-	@import url("../fonts/fonts.css");
-/* rest css */ 
-	@import url("reset.css");
+/* fonts css */
+@import url("../fonts/fonts.css");
+/* rest css */
+/* @import url("reset.css"); */
 /* library lib css */
-	
-/* base layour css */ 
-	@import url("icon.css");
-	@import url("modal.css");
-	@import url("common.css");
 
-
+/* base layour css */
+@import url("icon.css");
+@import url("modal.css");
+@import url("common.css");
