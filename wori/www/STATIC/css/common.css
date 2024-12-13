@@ -357,10 +357,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   flex-direction: column;
   width: 100%;
   /* height: var(--view-height); */
-  height: 101%;
+  height: 101% !important;
   overflow: auto;
   /* overscroll-behavior: none; */
-  overscroll-behavior: unset !important;
+  overscroll-behavior: auto !important;
 }
 .vh-header-wrap,
 .vh-footer-wrap {
@@ -464,8 +464,9 @@ body {
   overflow: hidden;
 }
 .vh-container {
-  height: 100%;
+  height: 101%;
   overflow: auto;
+  overscroll-behavior: auto !important;
 }
 
 /* allow access*/
