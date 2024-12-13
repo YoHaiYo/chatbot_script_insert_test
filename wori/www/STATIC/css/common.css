@@ -360,7 +360,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 100%;
   overflow: auto;
   /* overscroll-behavior: none; */
-  overscroll-behavior: contain;
+  overscroll-behavior: auto !important;
 }
 .vh-header-wrap,
 .vh-footer-wrap {
