@@ -2,7 +2,8 @@
 :root {
   /* viewport */
   --header-height: 96px;
-  --view-height: calc(var(--vh, 1vh) * 100);
+  /* --view-height: calc(var(--vh, 1vh) * 100); */
+  --view-height: 100%;
 
   /* thema color */
   --primary: #ffd009;
@@ -28,6 +29,19 @@
 body {
   color: var(--black-100);
   background: #fff;
+}
+.vh-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: column;
+  width: 100%;
+  /* height: var(--view-height); */
+  height: 101% !important;
+  overflow: auto;
+  /* overscroll-behavior: none; */
+  overscroll-behavior: auto !important;
+  -webkit-overflow-scrolling: touch;
 }
 /* input, select ,textarea */
 a {
@@ -350,18 +364,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* frame */
 /* view height */
-.vh-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
-  flex-direction: column;
-  width: 100%;
-  /* height: var(--view-height); */
-  height: 101% !important;
-  overflow: auto;
-  /* overscroll-behavior: none; */
-  overscroll-behavior: auto !important;
-}
+
 .vh-header-wrap,
 .vh-footer-wrap {
   flex-shrink: 0;
@@ -463,11 +466,11 @@ body {
   height: 100%;
   overflow: hidden;
 }
-.vh-container {
+/* .vh-container {
   height: 101%;
   overflow: auto;
   overscroll-behavior: auto !important;
-}
+} */
 
 /* allow access*/
 .allow-access-wrap {
