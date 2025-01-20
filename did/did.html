@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D-ID Avatar Example</title>
+  </head>
+  <body>
+    <h4>D-ID 아바타 생성</h4>
+    <form id="avatarForm">
+      <label for="image">얼굴 사진 업로드:</label>
+      <input type="file" id="image" accept="image/*" required />
+      <label for="text">텍스트 입력:</label>
+      <input
+        type="text"
+        id="text"
+        placeholder="텍스트를 입력하세요..."
+        required
+      />
+      <button type="submit">생성하기</button>
+    </form>
+    <h4>결과</h4>
+    <video id="resultVideo" controls style="display: none; width: 100%"></video>
+
+    <script>
+      document
+        .getElementById("avatarForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const apiKey = "ZGV2QHhlcm9zdC5haQ:AJ6uXvOGtPBOdXUEBIQsD"; // 발급받은 API 키를 여기에 입력하세요.
+          const imageInput = document.getElementById("image").files[0];
+          const textInput = document.getElementById("text").value;
+
+          if (!imageInput || !textInput) {
+            alert("사진과 텍스트를 모두 입력하세요!");
+            return;
+          }
+
+          // 이미지 파일을 Base64로 변환
+          const toBase64 = (file) =>
+            new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result.split(",")[1]); // Base64 데이터만 추출
+              reader.onerror = (error) => reject(error);
+              reader.readAsDataURL(file);
+            });
+
+          try {
+            const imageBase64 = await toBase64(imageInput);
+
+            // D-ID API 호출
+            const response = await fetch("https://api.d-id.com/talks", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${apiKey}`,
+              },
+              body: JSON.stringify({
+                source_url: `data:image/jpeg;base64,${imageBase64}`, // Base64 이미지
+                script: {
+                  type: "text",
+                  input: textInput,
+                },
+              }),
+            });
+
+            if (!response.ok) {
+              const error = await response.json();
+              alert(`오류 발생: ${error.message}`);
+              return;
+            }
+
+            const result = await response.json();
+
+            // 생성된 비디오 URL 가져오기
+            const videoUrl = result.result_url;
+            const videoElement = document.getElementById("resultVideo");
+            videoElement.src = videoUrl;
+            videoElement.style.display = "block";
+          } catch (error) {
+            console.error("에러:", error);
+            alert("동영상 생성 중 문제가 발생했습니다.");
+          }
+        });
+    </script>
+  </body>
+</html>
