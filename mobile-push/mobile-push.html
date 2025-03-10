@@ -4,9 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Firebase 푸시 알림 테스트</title>
+
+    <!-- jQuery 로드 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging.js"></script>
+
+    <!-- Firebase SDK (compat 버전) -->
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-messaging-compat.js"></script>
   </head>
   <body>
     <h2>Firebase 웹 푸시 알림</h2>
@@ -36,21 +40,20 @@
     <p>FCM 토큰: <span id="token">N/A</span></p>
 
     <script>
-      // 1. Firebase 설정
+      // ✅ Firebase 설정
       const firebaseConfig = {
         apiKey: "AIzaSyDO0TY9fWIQiUTIe6Oqy2GXKyXqhDiwSas",
-        // authDomain: "chatbot-script-insert-test.vercel.app",
         projectId: "sshtest-b0a70",
-        storageBucket: "sshtest-b0a70.firebasestorage.app",
+        storageBucket: "sshtest-b0a70.appspot.com",
         messagingSenderId: "229082605379",
         appId: "1:229082605379:web:f3825bee241b460dc931f6",
       };
 
-      // 2. Firebase 초기화
+      // ✅ Firebase 초기화
       firebase.initializeApp(firebaseConfig);
       const messaging = firebase.messaging();
 
-      // 3. 알림 권한 요청 및 FCM 토큰 가져오기
+      // ✅ 알림 권한 요청 및 FCM 토큰 가져오기
       $("#subscribe").click(function () {
         Notification.requestPermission().then((permission) => {
           if (permission === "granted") {
@@ -74,7 +77,7 @@
         });
       });
 
-      // 4. 푸시 알림 보내기 (서버 요청)
+      // ✅ 푸시 알림 보내기 (서버 요청)
       $("#send").click(function () {
         const token = $("#token").text();
         if (token === "N/A") {
@@ -97,7 +100,7 @@
           method: "POST",
           contentType: "application/json",
           headers: {
-            Authorization: "key=YOUR_SERVER_KEY",
+            Authorization: "key=AIzaSyDO0TY9fWIQiUTIe6Oqy2GXKyXqhDiwSas", // ✅ Firebase 서버 키 입력
             "Content-Type": "application/json",
           },
           data: JSON.stringify(payload),
@@ -112,7 +115,7 @@
         });
       });
 
-      // 5. 푸시 메시지 수신 처리
+      // ✅ 푸시 메시지 수신 처리
       messaging.onMessage((payload) => {
         console.log("푸시 메시지 수신:", payload);
         alert(`알림 수신: ${payload.notification.title}`);
