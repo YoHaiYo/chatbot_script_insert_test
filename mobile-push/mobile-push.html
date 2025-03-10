@@ -58,6 +58,16 @@
       const app = initializeApp(firebaseConfig);
       const messaging = getMessaging(app);
 
+      // ✅ 서비스 워커 등록 (경로 명시적으로 설정)
+      navigator.serviceWorker
+        .register("/mobile-push/firebase-messaging-sw.js")
+        .then((registration) => {
+          console.log("✅ Service Worker 등록 성공:", registration);
+        })
+        .catch((error) => {
+          console.error("❌ Service Worker 등록 실패:", error);
+        });
+
       // ✅ 알림 권한 요청 및 FCM 토큰 가져오기
       document
         .getElementById("subscribe")
@@ -68,24 +78,25 @@
               const token = await getToken(messaging, {
                 vapidKey:
                   "BBtkOwm79Db4Q1K62fZVATXDJoBRogOc4BVWKIO1s7EhWpgeD2gWeUi8aoIUyauhTTQJLwblEdGvYC1AS2ljj0Q",
+                serviceWorkerRegistration: await navigator.serviceWorker.ready,
               });
               if (token) {
                 document.getElementById("token").textContent = token;
-                console.log("FCM Token:", token);
+                console.log("✅ FCM Token:", token);
               } else {
-                console.error("토큰 가져오기 실패");
+                console.error("❌ 토큰 가져오기 실패");
               }
             } else {
-              alert("알림 권한이 차단되었습니다.");
+              alert("❌ 알림 권한이 차단되었습니다.");
             }
           } catch (error) {
-            console.error("토큰 요청 오류:", error);
+            console.error("❌ 토큰 요청 오류:", error);
           }
         });
 
       // ✅ 푸시 메시지 수신 처리
       onMessage(messaging, (payload) => {
-        console.log("푸시 메시지 수신:", payload);
+        console.log("📩 푸시 메시지 수신:", payload);
         alert(`알림 수신: ${payload.notification.title}`);
       });
     </script>
