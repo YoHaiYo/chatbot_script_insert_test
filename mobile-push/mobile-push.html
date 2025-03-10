@@ -4,9 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Firebase 웹 푸시 알림</title>
+    <style>
+      #log {
+        width: 100%;
+        height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background: #f9f9f9;
+        font-size: 12px;
+      }
+    </style>
   </head>
   <body>
-    <h2>Firebase 웹 푸시 알림 테스트 1</h2>
+    <h2>Firebase 웹 푸시 알림 테스트 2</h2>
     <label
       >이미지 URL:
       <input
@@ -32,6 +43,10 @@
     <button id="send">푸시 알림 생성</button>
     <p>FCM 토큰: <span id="token">N/A</span></p>
 
+    <!-- ✅ 로그 화면 표시 -->
+    <h3>📜 로그:</h3>
+    <div id="log"></div>
+
     <!-- Firebase SDK 최신 버전 로드 -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
@@ -40,6 +55,13 @@
         getToken,
         onMessage,
       } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-messaging.js";
+
+      // ✅ 로그를 화면에 출력하는 함수
+      function logMessage(message) {
+        const logDiv = document.getElementById("log");
+        logDiv.innerHTML += `<p>${message}</p>`;
+        logDiv.scrollTop = logDiv.scrollHeight;
+      }
 
       // ✅ Firebase 설정
       const firebaseConfig = {
@@ -57,15 +79,16 @@
       // ✅ Firebase 초기화
       const app = initializeApp(firebaseConfig);
       const messaging = getMessaging(app);
+      logMessage("✅ Firebase 초기화 완료");
 
-      // ✅ 서비스 워커 등록 (경로 명시적으로 설정)
+      // ✅ 서비스 워커 등록
       navigator.serviceWorker
         .register("/mobile-push/firebase-messaging-sw.js")
         .then((registration) => {
-          console.log("✅ Service Worker 등록 성공:", registration);
+          logMessage("✅ Service Worker 등록 성공");
         })
         .catch((error) => {
-          console.error("❌ Service Worker 등록 실패:", error);
+          logMessage(`❌ Service Worker 등록 실패: ${error.message}`);
         });
 
       // ✅ 알림 권한 요청 및 FCM 토큰 가져오기
@@ -74,6 +97,8 @@
         .addEventListener("click", async () => {
           try {
             const permission = await Notification.requestPermission();
+            logMessage(`🔔 알림 권한 상태: ${permission}`);
+
             if (permission === "granted") {
               const token = await getToken(messaging, {
                 vapidKey:
@@ -82,22 +107,55 @@
               });
               if (token) {
                 document.getElementById("token").textContent = token;
-                console.log("✅ FCM Token:", token);
+                logMessage(`✅ FCM Token: ${token}`);
               } else {
-                console.error("❌ 토큰 가져오기 실패");
+                logMessage("❌ 토큰 가져오기 실패");
               }
             } else {
-              alert("❌ 알림 권한이 차단되었습니다.");
+              logMessage("❌ 알림 권한이 차단됨");
             }
           } catch (error) {
-            console.error("❌ 토큰 요청 오류:", error);
+            logMessage(`❌ 토큰 요청 오류: ${error.message}`);
           }
         });
 
       // ✅ 푸시 메시지 수신 처리
       onMessage(messaging, (payload) => {
-        console.log("📩 푸시 메시지 수신:", payload);
+        logMessage(`📩 푸시 메시지 수신: ${JSON.stringify(payload)}`);
         alert(`알림 수신: ${payload.notification.title}`);
+      });
+
+      // ✅ 푸시 알림 생성 버튼 클릭 시 서버에 요청
+      document.getElementById("send").addEventListener("click", () => {
+        const token = document.getElementById("token").textContent;
+        if (token === "N/A") {
+          logMessage("❌ 먼저 알림 허용을 해주세요!");
+          return;
+        }
+
+        const payload = {
+          to: token,
+          notification: {
+            title: document.getElementById("title").value,
+            body: document.getElementById("message").value,
+            icon: document.getElementById("icon").value,
+            click_action: document.getElementById("url").value,
+          },
+        };
+
+        fetch("https://fcm.googleapis.com/fcm/send", {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer YOUR_ACCESS_TOKEN",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => response.json())
+          .then((data) =>
+            logMessage(`✅ 푸시 알림 성공: ${JSON.stringify(data)}`)
+          )
+          .catch((error) => logMessage(`❌ 푸시 알림 실패: ${error.message}`));
       });
     </script>
   </body>
