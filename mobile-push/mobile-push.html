@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹 푸시 알림 테스트</title>
+  </head>
+  <body>
+    <h2>웹 푸시 알림 테스트</h2>
+    <label
+      >이미지 URL:
+      <input
+        type="text"
+        id="icon"
+        value="https://xerost.ai/static/front/img/logo.png" /></label
+    ><br /><br />
+    <label
+      >알림 제목: <input type="text" id="title" value="테스트 알림" /></label
+    ><br /><br />
+    <label
+      >알림 내용:
+      <input
+        type="text"
+        id="message"
+        value="이것은 테스트 메시지입니다." /></label
+    ><br /><br />
+    <label
+      >이동할 URL:
+      <input type="text" id="url" value="https://www.google.com" /></label
+    ><br /><br />
+    <button onclick="showNotification()">푸시 알림 생성</button>
+
+    <script>
+      function showNotification() {
+        if (!("Notification" in window)) {
+          alert("이 브라우저는 푸시 알림을 지원하지 않습니다.");
+          return;
+        }
+
+        // 알림 권한 요청
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            // 입력값 가져오기
+            const icon = document.getElementById("icon").value;
+            const title = document.getElementById("title").value;
+            const message = document.getElementById("message").value;
+            const url = document.getElementById("url").value;
+
+            // 알림 생성
+            const notification = new Notification(title, {
+              body: message,
+              icon: icon,
+            });
+
+            // 클릭하면 URL로 이동
+            notification.onclick = function () {
+              window.open(url, "_blank");
+            };
+          } else {
+            alert("알림 권한이 차단되었습니다.");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

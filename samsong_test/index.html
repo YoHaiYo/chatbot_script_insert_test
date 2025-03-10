@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      (function () {
+        var chatbotButton = document.createElement("div");
+        chatbotButton.style.position = "fixed";
+        chatbotButton.style.bottom = "20px";
+        chatbotButton.style.right = "20px";
+        chatbotButton.style.width = "60px";
+        chatbotButton.style.height = "60px";
+        chatbotButton.style.backgroundImage =
+          'url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png")';
+        chatbotButton.style.backgroundSize = "cover";
+        chatbotButton.style.cursor = "pointer";
+        chatbotButton.style.zIndex = "1000";
+        document.body.appendChild(chatbotButton);
+        var chatbotContainer = document.createElement("div");
+        chatbotContainer.style.position = "fixed";
+        chatbotContainer.style.bottom = "100px";
+        chatbotContainer.style.right = "20px";
+        chatbotContainer.style.width = "400px";
+        chatbotContainer.style.height = "636px";
+        chatbotContainer.style.border = "1px solid #ccc";
+        chatbotContainer.style.zIndex = "1000";
+        chatbotContainer.style.display = "none";
+        chatbotContainer.style.backgroundColor = "#fff";
+        const widthMediaQuery = window.matchMedia("(max-width: 500px)");
+        const heightMediaQuery = window.matchMedia("(max-height: 700px)");
+        function handleMediaQueries() {
+          if (widthMediaQuery.matches) {
+            chatbotContainer.style.width = "80vw";
+          } else {
+            chatbotContainer.style.width = "400px";
+          }
+          if (heightMediaQuery.matches) {
+            chatbotContainer.style.height = "70vh";
+          } else {
+            chatbotContainer.style.height = "636px";
+          }
+        }
+        handleMediaQueries();
+        widthMediaQuery.addListener(handleMediaQueries);
+        heightMediaQuery.addListener(handleMediaQueries);
+        var closeButton = document.createElement("div");
+        closeButton.style.backgroundColor = "#ff6347";
+        closeButton.style.position = "absolute";
+        closeButton.style.top = "15px";
+        closeButton.style.right = "15px";
+        closeButton.style.width = "80px";
+        closeButton.style.height = "31px";
+        closeButton.style.cursor = "pointer";
+        closeButton.style.color = "white";
+        closeButton.style.display = "flex";
+        closeButton.style.justifyContent = "center";
+        closeButton.style.alignItems = "center";
+        closeButton.style.borderRadius = "10px";
+        closeButton.style.fontSize = "14px";
+        closeButton.style.fontWeight = "bold";
+        closeButton.innerText = "종료하기";
+        var iframe = document.createElement("iframe");
+        iframe.src = "https://15.164.144.244/chatbot_v1/";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.setAttribute("scrolling", "no");
+        chatbotContainer.appendChild(iframe);
+        document.body.appendChild(chatbotContainer);
+        // 쿠키를 포함하기 위한 sandbox 속성 추가
+        iframe.setAttribute(
+          "sandbox",
+          "allow-scripts allow-same-origin allow-forms"
+        );
+        chatbotButton.addEventListener("click", function () {
+          chatbotContainer.style.display =
+            chatbotContainer.style.display === "none" ? "block" : "none";
+        });
+        closeButton.addEventListener("click", function () {
+          chatbotContainer.style.display = "none";
+          iframe.src = iframe.src;
+        });
+      })();
+    </script>
+  </body>
+</html>
