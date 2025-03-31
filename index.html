@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json?v=2" />
+
     <meta name="theme-color" content="#ffffff" />
 
     <title>챗봇스크립트 확인 테스트</title>
@@ -69,14 +70,39 @@
     </script> -->
 
     <script>
+      // Manifest 확인
+      window.addEventListener("load", async () => {
+        try {
+          const res = await fetch("/manifest.json");
+          if (res.ok) {
+            const manifest = await res.json();
+            alert("✅ manifest.json 로드 성공: " + JSON.stringify(manifest));
+          } else {
+            alert("❌ manifest.json 로드 실패: HTTP " + res.status);
+          }
+        } catch (err) {
+          alert("❌ manifest.json 로드 중 에러: " + err.message);
+        }
+      });
+
+      // Service Worker 등록 확인
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("/service-worker.js")
-            .then((reg) => alert("Service Worker 등록 완료:", reg))
-            .catch((err) => alert("Service Worker 등록 실패:", err));
+            .then((reg) => alert("✅ Service Worker 등록 완료"))
+            .catch((err) => alert("❌ Service Worker 등록 실패: " + err));
         });
+      } else {
+        alert("❌ Service Worker 미지원 브라우저");
       }
+
+      // PWA 환경인지 확인
+      const isStandalone =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true;
+
+      alert("📱 현재 PWA 모드인가? " + (isStandalone ? "✅ 예" : "❌ 아니오"));
     </script>
   </body>
 </html>
