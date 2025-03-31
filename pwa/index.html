@@ -6,7 +6,7 @@
     <title>내 PWA 앱</title>
 
     <!-- Manifest 연결 -->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
 
     <!-- 아이콘 -->
     <link rel="icon" href="icons/icon-192.png" />
@@ -22,7 +22,7 @@
     <script>
       // service worker 등록
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js");
+        navigator.serviceWorker.register("./service-worker.js");
       }
     </script>
   </body>
