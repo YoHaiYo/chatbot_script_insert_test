@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 PWA 앱</title>
+
+    <!-- Manifest 연결 -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- 아이콘 -->
+    <link rel="icon" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+    <!-- PWA 설정 -->
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <h1>안녕하세요! 이것은 PWA입니다 🚀</h1>
+    <p>홈화면에 추가해서 전체화면으로 실행해보세요!</p>
+
+    <script>
+      // service worker 등록
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
+  </body>
+</html>
