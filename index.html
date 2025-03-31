@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#ffffff" />
+
     <title>챗봇스크립트 확인 테스트</title>
     <style>
       body {
@@ -64,5 +67,15 @@
         });
       })();
     </script> -->
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((reg) => console.log("Service worker registered.", reg));
+        });
+      }
+    </script>
   </body>
 </html>
