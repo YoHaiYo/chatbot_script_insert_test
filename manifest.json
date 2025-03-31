@@ -1,7 +1,8 @@
 {
   "name": "내 앱 이름",
   "short_name": "앱이름",
-  "start_url": "/",
+  "start_url": "/index.html",
+  "scope": "/",
   "display": "fullscreen",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
