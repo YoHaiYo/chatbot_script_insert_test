@@ -45,64 +45,8 @@
     <p>
       <a href="/pwa/index.html">PWA 테스트</a>
     </p>
-
-    <!-- <script>
-      (function () {
-        const styleSheet = document.createElement("style");
-        styleSheet.innerHTML =
-          " iframe#chatbot-wrapper { z-index: 9999; position: fixed; left: 20px; bottom: 20px; width: 300px; height: 300px; border: none; transition: all 0.3s ease; } iframe#chatbot-wrapper.expanded { width: 750px; height: 420px; } @media (max-width: 767px) { iframe#chatbot-wrapper.expanded { width: 90vw; height: 420px } } ";
-        document.head.appendChild(styleSheet);
-        const iframe = document.createElement("iframe");
-        iframe.id = "chatbot-wrapper";
-        iframe.src = "https://namdosobanchatbot.com/company/남도소반/";
-        iframe.allow = "microphone";
-        document.body.appendChild(iframe);
-        window.addEventListener("message", (event) => {
-          if (event.origin !== "https://namdosobanchatbot.com") return;
-          const data = event.data;
-          if (data === "expand-chatbot") {
-            iframe.classList.add("expanded");
-          } else if (data === "collapse-chatbot") {
-            iframe.classList.remove("expanded");
-          }
-        });
-      })();
-    </script> -->
-
-    <script>
-      // Manifest 확인
-      window.addEventListener("load", async () => {
-        try {
-          const res = await fetch("/manifest.json");
-          if (res.ok) {
-            const manifest = await res.json();
-            alert("✅ manifest.json 로드 성공: " + JSON.stringify(manifest));
-          } else {
-            alert("❌ manifest.json 로드 실패: HTTP " + res.status);
-          }
-        } catch (err) {
-          alert("❌ manifest.json 로드 중 에러: " + err.message);
-        }
-      });
-
-      // Service Worker 등록 확인
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/service-worker.js")
-            .then((reg) => alert("✅ Service Worker 등록 완료"))
-            .catch((err) => alert("❌ Service Worker 등록 실패: " + err));
-        });
-      } else {
-        alert("❌ Service Worker 미지원 브라우저");
-      }
-
-      // PWA 환경인지 확인
-      const isStandalone =
-        window.matchMedia("(display-mode: standalone)").matches ||
-        window.navigator.standalone === true;
-
-      alert("📱 현재 PWA 모드인가? " + (isStandalone ? "✅ 예" : "❌ 아니오"));
-    </script>
+    <p>
+      <a href="/excel-down/index.html">엑셀 유효성 다운</a>
+    </p>
   </body>
 </html>
